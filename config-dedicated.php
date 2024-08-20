@@ -7,10 +7,10 @@
   const MYSQL_DBSE = 'lif_1';			# LiF MariaDB database name
 	
   const QUERY_SERVER = 'yes';			# Use Steamworks API to query the server. Set to 'no' for private servers!
-  const GAMESERVER_IP = '123.45.67.89';	# Gameserver IP address or hostname
+  const GAMESERVER_IP = 'gameserver';	# Gameserver IP address or hostname
   const GAMESERVER_PORT = '28000';		# Gameserver Port
 	
-  const ADMIN_PASS = 'change_me';		# Admin password used to login and configure the livemap.
+  const ADMIN_PASS = '1234';		# Admin password used to login and configure the livemap.
 
   $livemap_id = 1;
   # Change this to a different number if you are running multiple livemaps on the same domain.

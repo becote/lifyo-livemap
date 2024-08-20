@@ -69,6 +69,14 @@ var NyuLivemapHeader = {
 				{ text: Locale.ui[18], click: function() { $(this).dialog("close"); } },
 			]
 		} );
+		// Server Calendar Dialog
+		// this.calendarDialog = $("#dialog-calendar").dialog( {
+		// 	autoOpen: false, resizable: false, modal: true,
+		// 	height: "auto", width: "auto",
+		// 	buttons: [
+		// 		{ text: Locale.ui[18], click: function() { $(this).dialog("close"); } },
+		// 	]
+		// } );
 		// Teamspeak Dialog
 		this.teamspeakDialog = $("#dialog-teamspeak").dialog( {
 			autoOpen: false, resizable: false, modal: true,
@@ -124,7 +132,8 @@ var NyuLivemapHeader = {
 			return false;
 		} );
 		// Bind events to menu items
-		$("#menu-livemap, #menu-logout, #menu-char, #menu-rcon, #menu-config").on( 'click', function() {
+		$("#menu-livemap, #menu-logout, #menu-char, #menu-rcon, #menu-config, #menu-calendar").on( 'click', function() {
+			console.log("here")
 			window.location.href = this.dataset.link;
 		} );
 		$("#menu-discord, #menu-website").on( 'click', function() {
@@ -133,6 +142,10 @@ var NyuLivemapHeader = {
 		$("#menu-server").on( 'click', function() {
 			this.infoDialog.dialog('open');
 		}.bind(this) );
+		//TODO here
+		// $("#menu-calendar").on( 'click', function() {
+		// 	this.calendarDialog.dialog('open');
+		// }.bind(this) );
 		$("#menu-rules").on( 'click', function() {
 			this.rulesDialog.dialog('open');
 		}.bind(this) );

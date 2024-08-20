@@ -1,0 +1,53 @@
+/* Calendar styles */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Default calendar tile style */
+.calendar-tile {
+    border: 1px solid #555;
+    padding: 10px;
+    text-align: center;
+    background: #0b1e74; /* Deep blue */
+    border-radius: 5px;
+    color: #fff; /* White text for better readability */
+}
+
+.calendar-tile img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.calendar-tile h3 {
+    margin: 10px 0;
+}
+
+/* Winter theme */
+.winter-tile {
+    background-color: #1e90ff; /* Dodger blue */
+}
+
+/* Spring theme */
+.spring-tile {
+    background-color: #32cd32; /* Lime green */
+}
+
+/* Summer theme */
+.summer-tile {
+    background-color: #ff4500; /* Orange red */
+}
+
+/* Fall theme */
+.fall-tile {
+    background-color: #ff8c00; /* Dark orange */
+}
+
+/* Default theme for undefined seasons */
+.default-tile {
+    background-color: #444; /* Dark gray for default */
+}

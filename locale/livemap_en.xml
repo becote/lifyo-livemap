@@ -47,6 +47,8 @@
 		<string id="41">Outpost of {GuildName}</string>
 		<string id="42">Trading Post</string>
 		<string id="43">click for details</string>
+		<string id="44">Calendar</string>
+		
 		<!-- Livemap / Layers -->
 		<string id="100">Alternative terrain imagery</string>
 		<string id="101">Region Overlay</string>

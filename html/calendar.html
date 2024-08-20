@@ -1,0 +1,129 @@
+<div>
+    <div class="content-page">
+        <h1>Yearly Weather Calendar</h1>
+        <div>
+            <label for="filter">Filter by:</label>
+            <select id="filter">
+                <option value="all">Show All</option>
+                <option value="month">Filter by Month</option>
+            </select>
+            <select id="monthFilter" style="display: none;">
+                <option value="all">All Months</option>
+                
+            </select>
+        </div>
+        <div id="weather-container" class="calendar"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const filterSelect = document.getElementById('filter');
+        const monthFilter = document.getElementById('monthFilter');
+        const weatherContainer = document.getElementById('weather-container');
+        fetch('http://localhost/lifyo-livemap/weather/cm_weather1.xml')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(data, "application/xml");
+                const days = xmlDoc.getElementsByTagName('day');
+
+                let weatherData = [];
+
+                const months = [
+                    { name: 'January', days: 31 },
+                    { name: 'February', days: 28 },
+                    { name: 'March', days: 31 },
+                    { name: 'April', days: 30 },
+                    { name: 'May', days: 31 },
+                    { name: 'June', days: 30 },
+                    { name: 'July', days: 31 },
+                    { name: 'August', days: 31 },
+                    { name: 'September', days: 30 },
+                    { name: 'October', days: 31 },
+                    { name: 'November', days: 30 },
+                    { name: 'December', days: 31 }
+                ];
+
+                function getFormattedDateAndMonth(dayId) {
+                    let monthIndex = 0;
+                    let dayOfMonth = dayId + 1;
+
+                    while (dayOfMonth > months[monthIndex].days) {
+                        dayOfMonth -= months[monthIndex].days;
+                        monthIndex++;
+                    }
+
+                    return {
+                        date: `${dayOfMonth} ${months[monthIndex].name}`,
+                        month: months[monthIndex].name
+                    };
+                }
+
+                const seasonClasses = {
+                    'Winter': 'winter-tile',
+                    'Spring': 'spring-tile',
+                    'Summer': 'summer-tile',
+                    'Fall': 'fall-tile'
+                };
+
+                for (let i = 0; i < days.length; i++) {
+                    const id = parseInt(days[i].getAttribute('id'), 10);
+                    const season = days[i].getAttribute('season');
+                    const weather = days[i].textContent;
+                    const { date, month } = getFormattedDateAndMonth(id);
+                    weatherData.push({ id, season, weather, date, month });
+                }
+
+                const monthOptions = months.map(month => `<option value="${month.name}">${month.name}</option>`).join('');
+                monthFilter.innerHTML += monthOptions;
+
+                filterSelect.addEventListener('change', () => {
+                    const filterValue = filterSelect.value;
+                    monthFilter.style.display = filterValue === 'month' ? 'inline-block' : 'none';
+                    weekFilter.style.display = filterValue === 'week' ? 'inline-block' : 'none';
+                    if (filterValue === 'all') {
+                        renderTiles(weatherData);
+                    }
+                });
+
+                monthFilter.addEventListener('change', () => {
+                    const selectedMonth = monthFilter.value;
+                    if (selectedMonth === 'all') {
+                        renderTiles(weatherData);
+                    } else {
+                        const filteredData = weatherData.filter(item => item.month === selectedMonth);
+                        renderTiles(filteredData);
+                    }
+                });
+
+                function renderTiles(data) {
+                let weatherHTML = '';
+                data.forEach(item => {
+                    const imageUrl = `images/weather/${item.weather}.png`; // Example image URL
+                    const seasonClass = seasonClasses[item.season] || 'default-tile';
+
+                    weatherHTML += `
+                        <div class="calendar-tile ${seasonClass}">
+                            <h3>${item.date} (${item.season})</h3>
+                            <img src="${imageUrl}" alt="${item.weather}">
+                            <p>${item.weather}</p>
+                        </div>
+                    `;
+                });
+                weatherContainer.innerHTML = weatherHTML;
+                }
+
+                renderTiles(weatherData);
+
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+        }) 
+    </script>
+</div>

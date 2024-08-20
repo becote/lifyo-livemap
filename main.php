@@ -364,6 +364,11 @@
 
 		break;
 
+		// calendar
+		case 'calendar':
+			$content = new Template('html/calendar.html');
+		break;
+
 		// Guild Management & GuildGUI
 		case 'guildman':
 			
