@@ -1,17 +1,15 @@
 <?php
 
-  const MYSQL_HOST = '127.0.0.1';		# LiF MariaDB server address
-  const MYSQL_PORT = '3306';			# LiF MariaDB server port ... 3306 is default
-  const MYSQL_USER = 'root';			# LiF MariaDB username
-  const MYSQL_PASS = 'password';		# LiF MariaDB password
-  const MYSQL_DBSE = 'lif_1';			# LiF MariaDB database name
-	
-  const QUERY_SERVER = 'yes';			# Use Steamworks API to query the server. Set to 'no' for private servers!
-  const GAMESERVER_IP = 'gameserver';	# Gameserver IP address or hostname
-  const GAMESERVER_PORT = '28000';		# Gameserver Port
-	
-  const ADMIN_PASS = '1234';		# Admin password used to login and configure the livemap.
+const MYSQL_HOST = '127.0.0.1';
+const MYSQL_PORT = '3306';
+const MYSQL_USER = 'root';
+const MYSQL_PASS = '1234';
+const MYSQL_DBSE = 'lif_1';
 
-  $livemap_id = 1;
-  # Change this to a different number if you are running multiple livemaps on the same domain.
-  # Each map must have a different ID.
+const QUERY_SERVER = 'yes';
+const GAMESERVER_IP = 'gameserver';
+const GAMESERVER_PORT = '28000';
+
+const ADMIN_PASS = '1234';
+
+$livemap_id = 1;

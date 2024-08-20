@@ -47,6 +47,8 @@
 		<string id="41">Poste avancé de {GuildName}</string>
 		<string id="42">Comptoir déchange</string>
 		<string id="43">Cliquer pour afficher les détails</string>
+		<string id="44">Calendrier</string>
+		
 		<!-- Livemap / Layers -->
 		<string id="100">Carte alternative</string>
 		<string id="101">Affichage des régions</string>
